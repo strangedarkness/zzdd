@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Archives - zzdd Secret Base</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+    <main class="albums-page">
+
+        <div class="albums-header">
+            <div>
+                <h1>Archives</h1>
+                <p>Your memory collections.</p>
+            </div>
+
+            <button class="new-album-button">+ New Album</button>
+        </div>
+
+        <section class="album-grid">
+
+            {% for album in albums %}
+                <a class="album-card" href="/albums/{{ album.id }}">
+                    <div class="album-title">{{ album.name }}</div>
+                </a>
+            {% endfor %}
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

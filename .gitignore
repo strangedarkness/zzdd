@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# SQLite database
+database/*.db
+database/*.db-journal
+
+# Uploaded files
+uploads/*
+
+# Keep folder structure
+!uploads/.gitkeep
+!database/.gitkeep
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

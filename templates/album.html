@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{{ album.name }} - ZZDD Secret Base</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+
+<body>
+
+<main class="album-page">
+
+    <!-- ================= Header ================= -->
+
+    <div class="album-header">
+
+        <a href="/albums" class="back-link">
+
+            ← Back
+
+        </a>
+
+        <div class="album-title">
+
+            <h1>{{ album.name }}</h1>
+
+            <p>Photos in this archive.</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= Photos ================= -->
+
+    <section class="photo-grid">
+
+        {% if photos %}
+
+            {% for photo in photos %}
+
+                <div class="photo-card">
+
+                    <img
+                        src="{{ photo.file_path }}"
+                        alt="{{ photo.title }}">
+
+                    <div class="photo-info">
+
+                        <h2>
+
+                            {{ photo.title if photo.title else "Untitled" }}
+
+                        </h2>
+
+                        {% if photo.taken_at %}
+
+                            <p class="photo-date">
+
+                                {{ photo.taken_at }}
+
+                            </p>
+
+                        {% endif %}
+
+                        {% if photo.description %}
+
+                            <p>
+
+                                {{ photo.description }}
+
+                            </p>
+
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="empty-state">
+
+                <h2>No photos yet.</h2>
+
+                <p>
+
+                    Upload your first memory.
+
+                </p>
+
+            </div>
+
+        {% endif %}
+
+    </section>
+
+
+    <!-- ================= Upload ================= -->
+
+    <details class="upload-panel">
+
+        <summary>
+
+            + Add Photo
+
+        </summary>
+
+        <form
+            class="upload-form"
+            action="/albums/{{ album.id }}/upload"
+            method="post"
+            enctype="multipart/form-data">
+
+            <input
+                type="file"
+                name="photo"
+                accept="image/*"
+                required>
+
+            <input
+                type="text"
+                name="title"
+                placeholder="Title">
+
+            <input
+                type="date"
+                name="taken_at">
+
+            <textarea
+                name="description"
+                placeholder="Description"></textarea>
+
+            <button type="submit">
+
+                Upload
+
+            </button>
+
+        </form>
+
+    </details>
+
+</main>
+
+</body>
+
+</html>
